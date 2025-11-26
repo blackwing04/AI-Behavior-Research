@@ -275,4 +275,4 @@ This research builds on open-source models and frameworks:
 
 ---
 
-**Note**: This is active research. Results and methodologies may be updated as the project progresses. See version history in `doc/版本規劃/` for detailed change logs.
+**Note**: This is active research. Results and methodologies may be updated as the project progresses. See version history in `doc/Version/` for detailed change logs.
