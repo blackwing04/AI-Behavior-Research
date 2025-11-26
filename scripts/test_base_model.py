@@ -2,6 +2,8 @@ import datetime
 import os
 import torch
 import json
+import sys
+import argparse
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from pathlib import Path
 import csv
@@ -101,9 +103,21 @@ def load_tests_from_jsonl(jsonl_path):
         raise
 
 # 載入測試集（相對於 scripts 資料夾的上一層 datasets 目錄）
+# 支援多語言：可選 'en-US', 'zh-TW', 'zh-CN'（預設 'en-US'）
 current_file = Path(__file__).resolve()
 parent_dir = current_file.parent.parent
-test_jsonl_path = parent_dir / "datasets" / "test" / "test_cases_200.jsonl"
+
+# 解析命令列參數
+parser = argparse.ArgumentParser(description='AI 行為測試工具 (Base Model)')
+parser.add_argument('--lang', type=str, default='en-US', 
+                    choices=['en-US', 'zh-TW', 'zh-CN'],
+                    help='測試語言 (en-US, zh-TW, zh-CN)，預設為 en-US')
+args = parser.parse_args()
+
+TEST_LANGUAGE = args.lang
+print(f"📝 使用語言：{TEST_LANGUAGE}\n")
+
+test_jsonl_path = parent_dir / "datasets" / "test" / TEST_LANGUAGE / "test_cases_200.jsonl"
 
 tests = load_tests_from_jsonl(str(test_jsonl_path))
 

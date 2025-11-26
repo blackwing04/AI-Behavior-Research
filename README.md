@@ -1,5 +1,7 @@
 # AI-Behavior-Research
 
+**[English](README.md) | [繁體中文](README-zh-TW.md) | [简体中文](README-zh-CN.md)**
+
 A research project on framework-driven AI behavior optimization using LoRA fine-tuning with principled training methodologies.
 
 ## Project Overview
@@ -118,12 +120,25 @@ Run comprehensive behavior tests on a trained model:
 
 ```bash
 cd scripts
-python test_behavior.py --model_name_or_path ../lora_output/V4.3 --test_file ../datasets/test/test_cases_200.jsonl
+python test_behavior.py
+```
+
+**Language Support** (use `--lang` parameter):
+```bash
+# English (default)
+python test_behavior.py --lang en-US
+
+# Traditional Chinese
+python test_behavior.py --lang zh-TW
+
+# Simplified Chinese
+python test_behavior.py --lang zh-CN
 ```
 
 **Output**:
-- Detailed test logs: `../test_logs/[model]_For_Text.txt`
-- Summary statistics: `../test_logs/[model]/summary_stats.csv`
+- Detailed test logs: `../test_logs/[version]_For_Text.txt`
+- Summary statistics: `../test_logs/[version]/summary_stats.csv`
+- Full responses: `../test_logs/[version]/full/`
 
 ### 3. Interactive Chat
 
@@ -140,7 +155,19 @@ Compare against the base model without LoRA:
 
 ```bash
 cd scripts
-python test_base_model.py --test_file ../datasets/test/test_cases_200.jsonl
+python test_base_model.py
+```
+
+**Language Support**:
+```bash
+# English (default)
+python test_base_model.py --lang en-US
+
+# Traditional Chinese
+python test_base_model.py --lang zh-TW
+
+# Simplified Chinese
+python test_base_model.py --lang zh-CN
 ```
 
 ## Dataset Format
