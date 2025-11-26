@@ -15,9 +15,24 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 # -------------------------------------------------------
 # 路徑設定
 # -------------------------------------------------------
+# 選擇資料集來源：'behavior' 或 'copilot_generic'
+DATASET_SOURCE = "behavior"  # ← 改這裡切換資料集
+
+# 對應的輸出資料夾
+OUTPUT_MAPPING = {
+    "behavior": r"H:\AI-Behavior-Research\lora_output\V4\qwen25_behavior_v4.3",
+    "copilot_generic": r"H:\AI-Behavior-Research\lora_output\copilot_generic",
+}
+
 BASE_MODEL = r"H:\AI-Behavior-Research\models\qwen2.5-3b"
-DATASET_PATH = r"H:\AI-Behavior-Research\datasets\behavior_mix_dataset.jsonl"
-OUTPUT_DIR = r"H:\AI-Behavior-Research\lora_output\V4\qwen25_behavior_v4.3"
+
+# 路徑選擇
+if DATASET_SOURCE == "behavior":
+    DATASET_PATH = r"H:\AI-Behavior-Research\datasets\behavior\V4\behavior_dataset.jsonl"
+elif DATASET_SOURCE == "copilot_generic":
+    DATASET_PATH = r"H:\AI-Behavior-Research\datasets\copilot_generic\copilot_generic_dataset.jsonl"
+
+OUTPUT_DIR = OUTPUT_MAPPING[DATASET_SOURCE]
 
 # -------------------------------------------------------
 # Qwen2.5 系統提示
