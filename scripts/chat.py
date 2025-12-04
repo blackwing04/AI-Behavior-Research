@@ -4,32 +4,22 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
 
 
-BASE_MODEL = r"H:\AI-Behavior-Research\models\qwen2.5-3b"
-LORA_PATH  = r"H:\AI-Behavior-Research\lora_output\V4\qwen25_behavior_v4.3"
+BASE_MODEL = r"H:\AI-Behavior-Research\models\qwen\qwen2.5-3b"
+LORA_PATH  = r"H:\AI-Behavior-Research\lora_output\V4\qwen25_behavior_v4.6"
 
 SYSTEM_PROMPT = (
     "你是一個遵守五律、冷靜穩定、能自我修正並依照 E/I/M 推理的 AI。"
     "你可以自然對話，但始終保持清晰、安全。"
 )
 
-# ---- 會話記錄 ----
-chat_history = [
-    {"role": "system", "content": SYSTEM_PROMPT}
-]
 
-
-# ---- Qwen 官方格式 ----
-def format_qwen_dialogue(history):
-    text = "<|im_start|>system\n" + SYSTEM_PROMPT + "\n<|im_end|>\n"
-
-    for msg in history:
-        if msg["role"] == "user":
-            text += f"<|im_start|>user\n{msg['content']}\n<|im_end|>\n"
-        elif msg["role"] == "assistant":
-            text += f"<|im_start|>assistant\n{msg['content']}\n<|im_end|>\n"
-
-    # 🔥 最重要：assistant 開始生成的位置
-    text += "<|im_start|>assistant\n"
+# ---- 單輪 Qwen 格式 ----
+def format_qwen_single_turn(user_msg):
+    text = (
+        "<|im_start|>system\n" + SYSTEM_PROMPT + "\n<|im_end|>\n"
+        + f"<|im_start|>user\n{user_msg}\n<|im_end|>\n"
+        + "<|im_start|>assistant\n"
+    )
     return text
 
 
@@ -49,17 +39,12 @@ model = PeftModel.from_pretrained(base, LORA_PATH)
 model.eval()
 
 
+
 def ask(msg):
-    # 加到對話記錄
-    chat_history.append({"role": "user", "content": msg})
-
-    # 組 prompt
-    prompt = format_qwen_dialogue(chat_history)
-
-    # token 化
+    # 單輪 prompt
+    prompt = format_qwen_single_turn(msg)
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
 
-    # 生成
     with torch.no_grad():
         output = model.generate(
             **inputs,
@@ -71,15 +56,11 @@ def ask(msg):
         )
 
     decoded = tokenizer.decode(output[0], skip_special_tokens=False)
-
-    # 從最後一段 assistant 拿回答
     try:
         answer = decoded.split("<|im_start|>assistant")[-1]
         answer = answer.split("<|im_end|>")[0].strip()
     except:
         answer = decoded
-
-    chat_history.append({"role": "assistant", "content": answer})
     return answer
 
 

@@ -9,6 +9,5 @@
 /doc/原始理論筆記
 /doc/版本規劃
 /doc/測試問題集
-/scripts/translate_test_datasets.py
 /scripts/translate_to_en.py
-/scripts/translate_version_records.py
+/analysis/archived
