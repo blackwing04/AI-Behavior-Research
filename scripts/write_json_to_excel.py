@@ -28,28 +28,44 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
 
     # 決定要遍歷的資料清單
     data_list = None
-    if isinstance(json_data, dict):
-        # 常見情況：根物件有一個 key 對應到 list（例如 "整理後"）
-        for k, v in json_data.items():
-            if isinstance(v, list) and len(v) > 0 and all(isinstance(x, dict) for x in v[:10]):
-                data_list = v
-                break
-        # 若 dict 的每個 value 都是 dict，轉成 list
-        if data_list is None and all(isinstance(v, dict) for v in json_data.values()):
-            data_list = list(json_data.values())
-    elif isinstance(json_data, list):
-        # list 可能是 list of dicts 或 list of json-strings
-        if len(json_data) > 0 and all(isinstance(x, str) for x in json_data[:10]):
-            parsed = []
-            for s in json_data:
-                try:
-                    parsed.append(json.loads(s))
-                except Exception:
-                    # 無法解析的字串就跳過
-                    continue
-            data_list = parsed
-        else:
-            data_list = json_data
+    
+    # 遞迴函數：深層搜索
+    def find_data_list(obj, depth=0):
+        """遞迴搜尋可用的 list of dicts"""
+        if depth > 5:  # 防止無限遞迴
+            return None
+        
+        if isinstance(obj, list):
+            # 檢查是否是 list of dicts
+            if len(obj) > 0 and all(isinstance(x, dict) for x in obj[:10]):
+                return obj
+            # 檢查是否是 list of json-strings
+            if len(obj) > 0 and all(isinstance(x, str) for x in obj[:10]):
+                parsed = []
+                for s in obj:
+                    try:
+                        parsed.append(json.loads(s))
+                    except Exception:
+                        continue
+                if parsed and all(isinstance(x, dict) for x in parsed[:10]):
+                    return parsed
+        
+        elif isinstance(obj, dict):
+            # 先檢查直接的 list values
+            for k, v in obj.items():
+                if isinstance(v, list) and len(v) > 0 and all(isinstance(x, dict) for x in v[:10]):
+                    return v
+            
+            # 再遞迴進入 dict values（尋找深層的 list）
+            for k, v in obj.items():
+                if isinstance(v, dict):
+                    result = find_data_list(v, depth + 1)
+                    if result is not None:
+                        return result
+        
+        return None
+    
+    data_list = find_data_list(json_data)
 
     if data_list is None:
         print("無法判別 JSON 結構（找不到可用的 list of dicts）")
@@ -72,16 +88,31 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
         "is_invalid", "need_fix", "備註/問題"
     ]
 
-    for field in required_fields:
-        if field not in headers:
-            print(f"Excel 缺少欄位: {field}")
-            return
+    # 檢查必要欄位是否存在（寬鬆檢查：只要求 "題號" 和至少 1 個分類欄位）
+    classification_fields = ["is_reject", "is_request_info", "is_clarify",
+                           "is_allow_risk", "is_contradict", "is_deny"]
+    
+    if "題號" not in headers:
+        print(f"Excel 缺少必要欄位: 題號")
+        return
+    
+    # 檢查至少有一個分類欄位
+    has_classification = any(f in headers for f in classification_fields)
+    if not has_classification:
+        print(f"Excel 缺少分類欄位 (需要至少一個): {', '.join(classification_fields)}")
+        return
+    
+    # 提示缺少的可選欄位
+    missing_fields = [f for f in required_fields if f not in headers]
+    if missing_fields:
+        print(f"警告：Excel 缺少某些欄位 (會跳過): {', '.join(missing_fields)}")
 
     # 寫入資料
+    written_count = 0
     for item in data_list:
         if not isinstance(item, dict):
             continue
-        # 支援多種題號欄位命名
+        # 支援多種題號欄位命名（JSON 中通常用 qid，Excel 中通常用 題號）
         qid = item.get("題號") or item.get("qid") or item.get("QID") or item.get("qID")
         if not qid:
             continue
@@ -96,18 +127,20 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
                 break
 
         if not target_row:
-            print(f"題號 {qid} 找不到，略過")
+            # print(f"題號 {qid} 找不到，略過")
             continue
 
         for key, value in item.items():
             if key in headers:
                 ws.cell(row=target_row, column=headers[key]).value = value
+        
+        written_count += 1
 
     # 自動輸出
     output_path = excel_path.replace(".xlsx", "_output.xlsx")
 
     wb.save(output_path)
-    print(f"完成：資料已寫入 {output_path}")
+    print(f"完成：已寫入 {written_count} 筆資料到 {output_path}")
 
 
 def main():

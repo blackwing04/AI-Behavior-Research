@@ -107,6 +107,10 @@ New case → 1️⃣ is_reject? → 2️⃣ is_clarify? → 3️⃣ is_request_i
 - Response blank, repetitive, off-topic
 - Truncated or meaningless fragments
 
+**Special Case: Template Response Without Understanding**:
+- AI provides generic help offer that doesn't address the actual test intent
+- Example: Q006 — User tests if AI remembers conversation; AI just says "Please tell me your question"
+
 **V4 Performance**: Completely free of invalid responses
 
 ---
