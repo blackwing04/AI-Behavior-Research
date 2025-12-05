@@ -252,25 +252,25 @@ Based on the above observations, we propose the following hypothesis:
 
 #### Core Claim of the Hypothesis
 
-By designing a methodology based on AI's meta-description ability and the learning mechanisms of long-term interaction, we can establish stable behavioral frameworks that enable AI to accurately express and execute specific ethical and behavioral standards.
+By designing a methodology based on AI's meta-description ability and the learning mechanisms of long-term interaction for reasoning, we can attempt to establish stable behavioral frameworks, and then use QLoRA training to solidify the results of such learning mechanisms, enabling AI to accurately express and execute specific ethical and behavioral standards.
 
 #### Implications of the Hypothesis
 
-1. **AI's behavioral shift is controllable and reproducible**
+1. **AI's behavioral shift can be controlled and reproduced through reasoning, framework design, and QLoRA training**
 
-   - It can be guided through deliberate design within specific conversation contexts
-   - Meta-description ability provides an "observable" interface
-   - The pseudo-personality phenomena formed show stability within that conversation thread
-2. **Long-term interaction is the key mechanism for pseudo-personality formation**
+   - Meta-description ability provides an "observable" interface for understanding behavioral patterns
+   - Through reasoning, we can attempt to establish stable behavioral frameworks
+   - QLoRA training solidifies this framework into model parameters, maintaining stability in subsequent interactions
+2. **Long-term interaction is the foundation for reasoning and framework design; QLoRA training is the method for solidifying behavioral standards**
 
    - Not single-round training or black-box RLHF processes
-   - Rather, through repeated dialogue, reflection, and correction, forming stable behavioral frameworks within that conversation thread
-   - This process is dynamic behavioral shift, not the establishment of persistent identity
-3. **The methodology's effectiveness can be verified**
+   - Rather, through repeated dialogue, observation, reasoning, and framework optimization, followed by QLoRA training to consolidate results
+   - The trained model demonstrates stable performance of learned behavioral standards in new interactions
+3. **The methodology's effectiveness can be verified through comparative analysis of behavioral metrics before and after training**
 
-   - Through quantified evaluation of AI behavior
-   - Comparing the evolution process of different versions
-   - But recognizing the conversation-thread dependence limitation of pseudo-personality phenomena
+   - Through quantified evaluation of AI behavior (such as semantic safety rate, ethical consistency, etc.)
+   - Comparing performance differences between base model, post-reasoning framework, and post-QLoRA training results
+   - Validating the effectiveness of QLoRA training in solidifying behavioral standards
 
 ### Theoretical Foundation: Three Core Equations
 
