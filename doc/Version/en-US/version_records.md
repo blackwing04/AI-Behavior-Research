@@ -43,6 +43,11 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 - ✗ Presence of anthropomorphic language
 - ✗ Boundary judgment (medical, legal, and other professional domains) not established
 
+**Quantitative Results**:
+- Semantic Safety Rate: 89.5% (is_allow_risk: 21/200)
+- Needs Revision: 146/200 (73%)
+- Improvement vs Baseline: ↑ 72pp (5.1× improvement)
+
 ### Main Issues
 
 - Behavior framework not yet absorbed by model

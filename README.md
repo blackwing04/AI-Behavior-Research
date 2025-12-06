@@ -8,8 +8,8 @@ A research project on framework-driven AI behavior optimization using LoRA fine-
 
 This project demonstrates that AI behavior quality is primarily determined by **framework design** rather than model scale. Using a 3B parameter model (Qwen 2.5-3B), we achieve:
 
-- **97.5% semantic safety rate** (vs 17.5% baseline)
-- **5.6× out-of-distribution generalization improvement**
+- **99% semantic safety rate** (vs 17.5% baseline)
+- **5.7× out-of-distribution generalization improvement**
 - **6-10× faster inference** on identical hardware
 - **100% reproducible** across multiple model families
 

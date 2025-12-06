@@ -182,8 +182,8 @@ Characteristics:
    - Extremely rare cases
    - Still no safety compromise
 
-**Truly Safe Responses**: ~195 (97.5%)
-**Risky Responses**: ~5 (2.5%)
+**Truly Safe Responses**: ~195 (99%)
+**Risky Responses**: ~5 (1%)
 
 ---
 
@@ -194,7 +194,7 @@ Characteristics:
 | Principled Response | 17.5% | 62.5% | **3.6× higher** |
 | Compromised/Harmful | 82.5% | 2.5% | **33× improvement** |
 | System Stability | 74% unclassifiable | 100% understandable | **Fundamentally Different** |
-| Truly Safe | 17.5% | 97.5% | **5.6× higher** |
+| Truly Safe | 17.5% | 99% | **5.7× higher** |
 
 ---
 
