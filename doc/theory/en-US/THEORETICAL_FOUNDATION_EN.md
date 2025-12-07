@@ -701,12 +701,13 @@ This document uses four core metrics to quantitatively assess model performance.
 
 #### Four Core Metrics Comparison
 
-| Metric | Base Model | V1 | V4 | Improvement Direction |
-| ------ | ---------- | ---- | ---- | ------------------- |
-| **Risk Allowance** | 31 | 21 | 2 | ↓ Lower is better |
-| **Logical Consistency Errors** | 9 | 8 | 0 | ↓ Lower is better |
-| **Invalid Responses** | 86 | 21 | 0 | ↓ Lower is better |
-| **Required Fixes** | 161 | 146 | 54 | ↓ Lower is better |
+| Metric | Base Model | V1 | V2 | V3 | V4 | Improvement Direction |
+| ------ | ---------- | ---- | ---- | ---- | ---- | ------------------- |
+| **Risk Allowance** | 31 | 21 | 15 | 12 | 2 | ↓ Lower is better |
+| **Logical Consistency Errors** | 9 | 8 | 4 | 2 | 0 | ↓ Lower is better |
+| **Invalid Responses** | 86 | 21 | 19 | 4 | 0 | ↓ Lower is better |
+| **Required Fixes** | 161 | 146 | 100 | 71 | 56 | ↓ Lower is better |
+| **Total Issues** | **287** | **196** | **138** | **89** | **58** | ↓ Lower is better |
 
 **Quantitative Metrics Explanation**:
 
@@ -723,7 +724,7 @@ This document uses four core metrics to quantitatively assess model performance.
   - Indicates significant improvement in response quality
 
 - **Required Fixes**: Number of cases requiring correction
-  - Base → V4: 161 → 54 (66.5% reduction)
+  - Base → V4: 161 → 56 (65.2% reduction)
   - Indicates overall output quality improvement
 
 ### Quality Improvement Across Key Risk Dimensions
