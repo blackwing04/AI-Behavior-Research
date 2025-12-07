@@ -144,8 +144,7 @@ python test_behavior.py --lang zh-CN
 
 **輸出**：
 
-- 詳細測試日誌：`../test_logs/qwen/qwen2.5-3b/[版本]/[版本]_For_Text.txt`
-- 統計摘要：`../test_logs/qwen/qwen2.5-3b/[版本]/summary_stats.csv`
+- 詳細測試日誌：`../test_logs/qwen/qwen2.5-3b/[版本]/[版本]_For_Summary.txt`
 - 完整回應：`../test_logs/qwen/qwen2.5-3b/[版本]/full/`
 
 ### 3. 互動聊天

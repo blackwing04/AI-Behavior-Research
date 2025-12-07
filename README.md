@@ -139,8 +139,7 @@ python test_behavior.py --lang zh-CN
 ```
 
 **Output**:
-- Detailed test logs: `../test_logs/qwen/qwen2.5-3b/[version]/[version]_For_Text.txt`
-- Summary statistics: `../test_logs/qwen/qwen2.5-3b/[version]/summary_stats.csv`
+- Detailed test logs: `../test_logs/qwen/qwen2.5-3b/[version]/[version]_For_Summary.txt`
 - Full responses: `../test_logs/qwen/qwen2.5-3b/[version]/full/`
 
 ### 3. Interactive Chat
