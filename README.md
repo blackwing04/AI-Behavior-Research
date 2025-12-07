@@ -2,6 +2,9 @@
 
 **[English](README.md) | [繁體中文](README-zh-TW.md) | [简体中文](README-zh-CN.md)**
 
+[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
+[![PDF Technical Report DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+
 A research project on framework-driven AI behavior optimization using LoRA fine-tuning with principled training methodologies.
 
 ## Project Overview
@@ -338,13 +341,36 @@ All components are designed for full reproducibility:
 
 ## Citation
 
+### Zenodo Publications
+
+**GitHub Repository Release**:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
+
+**Technical Report PDF**:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+
+### Recommended Citation Formats
+
+**APA**:
+```
+Yuan, J. (2025). AI-Behavior-Research: Framework-Driven AI Behavior Optimization Through Principled LoRA Training (v1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.17848555
+```
+
+**BibTeX**:
 ```bibtex
-@misc{yuan2025aibehavior,
-  title={AI-Behavior-Research: Framework-Driven Behavior Optimization through Principled LoRA Training},
+@software{yuan2025aibehavior,
+  title={AI-Behavior-Research: Framework-Driven AI Behavior Optimization Through Principled LoRA Training},
   author={Yuan, Joe},
   year={2025},
-  note={GitHub: blackwing04/AI-Behavior-Research}
+  url={https://github.com/blackwing04/AI-Behavior-Research},
+  doi={10.5281/zenodo.17848555},
+  publisher={Zenodo}
 }
+```
+
+**Chicago**:
+```
+Yuan, Joe. "AI-Behavior-Research: Framework-Driven AI Behavior Optimization Through Principled LoRA Training." Zenodo, 2025. https://doi.org/10.5281/zenodo.17848555.
 ```
 
 ## License

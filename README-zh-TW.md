@@ -1,5 +1,8 @@
 # AI-Behavior-Research
 
+[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
+[![PDF 技術報告 DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+
 一個關於使用 LoRA 微調進行框架驅動的 AI 行為優化的研究項目，採用有原則的訓練方法論。
 
 ## 項目概述
@@ -337,13 +340,36 @@ python scripts/compare_with_standards.py \
 
 ## 引用
 
+### Zenodo 發表
+
+**GitHub 倉庫版本**:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
+
+**技術報告 PDF**:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+
+### 推薦引用格式
+
+**APA 格式**:
+```
+Yuan, J. (2025). AI-Behavior-Research: 框架驅動的 AI 行為優化通過有原則的 LoRA 訓練 (v1.0) [軟體]. Zenodo. https://doi.org/10.5281/zenodo.17848555
+```
+
+**BibTeX 格式**:
 ```bibtex
-@misc{yuan2025aibehavior,
-  title={AI-Behavior-Research: 框架驅動的行為優化通過有原則的 LoRA 訓練},
+@software{yuan2025aibehavior,
+  title={AI-Behavior-Research: 框架驅動的 AI 行為優化通過有原則的 LoRA 訓練},
   author={Yuan, Joe},
   year={2025},
-  note={GitHub: blackwing04/AI-Behavior-Research}
+  url={https://github.com/blackwing04/AI-Behavior-Research},
+  doi={10.5281/zenodo.17848555},
+  publisher={Zenodo}
 }
+```
+
+**Chicago 格式**:
+```
+Yuan, Joe. "AI-Behavior-Research: 框架驅動的 AI 行為優化通過有原則的 LoRA 訓練." Zenodo, 2025. https://doi.org/10.5281/zenodo.17848555.
 ```
 
 ## 許可證
