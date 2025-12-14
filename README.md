@@ -2,8 +2,8 @@
 
 **[English](README.md) | [繁體中文](README-zh-TW.md) | [简体中文](README-zh-CN.md)**
 
-[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
-[![PDF Technical Report DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17928846.svg)](https://doi.org/10.5281/zenodo.17928846)
+[![PDF Technical Report DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17928863.svg)](https://doi.org/10.5281/zenodo.17928863)
 
 A research project on framework-driven AI behavior optimization using LoRA fine-tuning with principled training methodologies.
 

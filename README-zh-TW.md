@@ -1,7 +1,7 @@
 # AI-Behavior-Research
 
-[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848555.svg)](https://doi.org/10.5281/zenodo.17848555)
-[![PDF 技術報告 DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17848306.svg)](https://doi.org/10.5281/zenodo.17848306)
+[![GitHub Release DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17928846.svg)](https://doi.org/10.5281/zenodo.17928846)
+[![PDF 技術報告 DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17928863.svg)](https://doi.org/10.5281/zenodo.17928863)
 
 一個關於使用 LoRA 微調進行框架驅動的 AI 行為優化的研究項目，採用有原則的訓練方法論。
 
