@@ -1,0 +1,117 @@
+{
+  "models": [
+    {
+      "brand": "Qwen",
+      "models": [
+        {
+          "name": "Qwen 2.5-3B",
+          "model_id": "Qwen/Qwen2.5-3B",
+          "size": "3B",
+          "description": "Qwen 2.5 系列 3B 模型（推薦用於此項目）",
+          "requires_auth": false,
+          "local_dir": "qwen2.5-3b"
+        },
+        {
+          "name": "Qwen 2.5-7B",
+          "model_id": "Qwen/Qwen2.5-7B",
+          "size": "7B",
+          "description": "Qwen 2.5 系列 7B 模型（性能更好，需更多顯存）",
+          "requires_auth": false,
+          "local_dir": "qwen2.5-7b"
+        },
+        {
+          "name": "Qwen 2.5-14B",
+          "model_id": "Qwen/Qwen2.5-14B",
+          "size": "14B",
+          "description": "Qwen 2.5 系列 14B 模型（最佳性能，需大量顯存）",
+          "requires_auth": false,
+          "local_dir": "qwen2.5-14b"
+        }
+      ]
+    },
+    {
+      "brand": "Phi",
+      "models": [
+        {
+          "name": "Phi-3 Mini",
+          "model_id": "microsoft/Phi-3-mini-4k-instruct",
+          "size": "3.8B",
+          "description": "Microsoft Phi-3 Mini 3.8B 模型（小而強大）",
+          "requires_auth": false,
+          "local_dir": "phi3-mini"
+        },
+        {
+          "name": "Phi-3 Small",
+          "model_id": "microsoft/Phi-3-small-8k-instruct",
+          "size": "7.4B",
+          "description": "Microsoft Phi-3 Small 7.4B 模型",
+          "requires_auth": false,
+          "local_dir": "phi3-small"
+        }
+      ]
+    },
+    {
+      "brand": "Mistral",
+      "models": [
+        {
+          "name": "Mistral 7B",
+          "model_id": "mistralai/Mistral-7B-v0.1",
+          "size": "7B",
+          "description": "Mistral 7B 模型（高效能開源模型）",
+          "requires_auth": false,
+          "local_dir": "mistral-7b"
+        },
+        {
+          "name": "Mistral 7B Instruct",
+          "model_id": "mistralai/Mistral-7B-Instruct-v0.2",
+          "size": "7B",
+          "description": "Mistral 7B 指令微調版本",
+          "requires_auth": false,
+          "local_dir": "mistral-7b-instruct"
+        }
+      ]
+    },
+    {
+      "brand": "TinyLlama",
+      "models": [
+        {
+          "name": "TinyLlama 1.1B",
+          "model_id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+          "size": "1.1B",
+          "description": "TinyLlama 1.1B 聊天模型（超輕量）",
+          "requires_auth": false,
+          "local_dir": "tinyllama-1b"
+        },
+        {
+          "name": "TinyLlama 1.1B Base",
+          "model_id": "TinyLlama/TinyLlama-1.1B",
+          "size": "1.1B",
+          "description": "TinyLlama 1.1B 基礎模型",
+          "requires_auth": false,
+          "local_dir": "tinyllama-1b-base"
+        }
+      ]
+    },
+    {
+      "brand": "Meta Llama",
+      "models": [
+        {
+          "name": "Llama 2-7B",
+          "model_id": "meta-llama/Llama-2-7b",
+          "size": "7B",
+          "description": "Meta Llama 2 7B 基礎模型",
+          "requires_auth": true,
+          "local_dir": "llama2-7b"
+        },
+        {
+          "name": "Llama 2-7B Chat",
+          "model_id": "meta-llama/Llama-2-7b-chat",
+          "size": "7B",
+          "description": "Meta Llama 2 7B 聊天版本（需 HuggingFace Token）",
+          "requires_auth": true,
+          "local_dir": "llama2-7b-chat"
+        }
+      ]
+    }
+  ]
+}

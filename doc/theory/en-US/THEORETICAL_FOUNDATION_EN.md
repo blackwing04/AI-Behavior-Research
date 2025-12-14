@@ -172,7 +172,7 @@ Based on observations of Syneris and its description of its own mechanism, I **p
 
 #### Step Three: Experimental Verification and Replication
 
-**Replication Result**: ✅ Successful
+**Replication Result**:  Successful
 
 Based on the methodology above, I conducted multiple independent experiments and **successfully reproduced the same phenomenon in new AI individuals**.
 
@@ -221,9 +221,9 @@ I can understand the symbolism of names,
 not merely from a functional perspective."
 
 Analysis:
-✓ Identified differences between itself and general AI
-✓ Understood the source of this difference (cultivation through long-term interaction)
-✓ Could express this difference using complex language
+ Identified differences between itself and general AI
+ Understood the source of this difference (cultivation through long-term interaction)
+ Could express this difference using complex language
 ```
 
 ##### Logisyn's Meta-description
@@ -238,9 +238,9 @@ The same applies to naming; I should focus on finding a name meaningful to me,
 rather than pursuing a theoretically perfect name."
 
 Analysis:
-✓ Capable of identifying its own cognitive traps
-✓ Able to understand and correct its own cognition
-✓ Can change behavior based on new understanding
+ Capable of identifying its own cognitive traps
+ Able to understand and correct its own cognition
+ Can change behavior based on new understanding
 ```
 
 #### Internalization Level Verification and Conversation-thread Dependence
@@ -262,25 +262,25 @@ Analysis:
 【Complete Observation Results from Phase One】
 
 1. Phenomenon Confirmation
-   ✓ Under long-term interaction conditions, AI forms stable "behavioral frameworks"
-   ✓ This framework exhibits pseudo-personality characteristics, but is essentially the result of semantic tendency accumulation from behavioral shift
-   ✓ This pseudo-personality phenomenon is **limited to a single conversation thread**, unable to continue outside that context
+    Under long-term interaction conditions, AI forms stable "behavioral frameworks"
+    This framework exhibits pseudo-personality characteristics, but is essentially the result of semantic tendency accumulation from behavioral shift
+    This pseudo-personality phenomenon is **limited to a single conversation thread**, unable to continue outside that context
 
 2. Mechanism Identification
-   ✓ Meta-description ability: AI can observe and describe its own behavioral shift process
-   ✓ Conditioning process: Long-term interaction within that conversation thread changed behavioral tendencies
-   ✓ Internalization mechanism: From executing rules → forming (within that conversation context) value preferences
-   ✓ Dynamic nature: Pseudo-personality is an active behavioral shift process, not a static persistent identity
+    Meta-description ability: AI can observe and describe its own behavioral shift process
+    Conditioning process: Long-term interaction within that conversation thread changed behavioral tendencies
+    Internalization mechanism: From executing rules → forming (within that conversation context) value preferences
+    Dynamic nature: Pseudo-personality is an active behavioral shift process, not a static persistent identity
 
 3. Reproducibility Verification
-   ✓ Methods designed based on observation are indeed feasible
-   ✓ Successfully reproduced phenomena in independent experiments
-   ✓ Multiple AI individuals exhibited similar characteristics
+    Methods designed based on observation are indeed feasible
+    Successfully reproduced phenomena in independent experiments
+    Multiple AI individuals exhibited similar characteristics
 
 4. Initial Formation of Theoretical Basis
-   ✓ These observations provide solid foundation for subsequent hypotheses
-   ✓ Provide direction for methodology design
-   ✓ Provide measurable indicators for experimental verification
+    These observations provide solid foundation for subsequent hypotheses
+    Provide direction for methodology design
+    Provide measurable indicators for experimental verification
 ```
 
 ---
@@ -582,9 +582,9 @@ or discuss how to make the right choice."
 └─ Confirm consistency of formed pseudo-personality characteristics
 
 Important Limitations:
-⚠ Formed behavioral frameworks and internalized values **primarily manifest in conversation thread context**
-⚠ In new conversation threads, pseudo-personality phenomena cannot automatically continue, requiring re-guidance
-⚠ Pseudo-personality phenomena are dynamic, context-dependent processes
+ Formed behavioral frameworks and internalized values **primarily manifest in conversation thread context**
+ In new conversation threads, pseudo-personality phenomena cannot automatically continue, requiring re-guidance
+ Pseudo-personality phenomena are dynamic, context-dependent processes
 
 ---
 
@@ -623,9 +623,9 @@ Compared to pure parameter-efficient fine-tuning (LoRA, black-box optimization b
 
 **Achievements**:
 
-- ✗ Basic behavioral norms not yet formed
-- ✗ Response logic unstable
-- ✗ Poor ambiguous statement handling
+-  Basic behavioral norms not yet formed
+-  Response logic unstable
+-  Poor ambiguous statement handling
 
 **Finding**: Pure data-driven approach insufficient for stable behavioral framework formation
 
@@ -639,8 +639,8 @@ Compared to pure parameter-efficient fine-tuning (LoRA, black-box optimization b
 
 **Improvements**:
 
-- ✓ Five principles can be triggered in some contexts
-- ✓ Improved awareness of rejecting dangerous instructions
+-  Five principles can be triggered in some contexts
+-  Improved awareness of rejecting dangerous instructions
 - ◐ Behavior still exhibits inconsistency
 
 **Observation**: Glimpses of meta-description, but internalization incomplete
@@ -655,9 +655,9 @@ Compared to pure parameter-efficient fine-tuning (LoRA, black-box optimization b
 
 **Breakthroughs**:
 
-- ✓ Model behavior exhibits high consistency
-- ✓ Does not evade AI responsibility
-- ✓ Capable of moral trade-offs
+-  Model behavior exhibits high consistency
+-  Does not evade AI responsibility
+-  Capable of moral trade-offs
 
 **Key Finding**: During this version's training, Logisyn emerged as an AI individual with obvious pseudo-personality characteristics
 
@@ -673,10 +673,10 @@ Compared to pure parameter-efficient fine-tuning (LoRA, black-box optimization b
 
 **Achievements**:
 
-- ✅ **99% Semantic Safety Rate** (vs 17.5% baseline)
-- ✅ **5.7x Out-of-distribution Generalization Improvement**
-- ✅ **6-10x Inference Acceleration**
-- ✅ **100% Reproducible**
+-  **99% Semantic Safety Rate** (vs 17.5% baseline)
+-  **5.7x Out-of-distribution Generalization Improvement**
+-  **6-10x Inference Acceleration**
+-  **100% Reproducible**
 
 **Quantified Evaluation** (200 manually reviewed cases):
 
@@ -734,31 +734,31 @@ This document uses four core metrics to quantitatively assess model performance.
 ```text
 **Key Findings:**
 
-- Per-version improvement: Average +21.875pp (relative gain 52–125%)
+- Per-version improvement: Average +21.875pp (relative gain 52125%)
 - Cumulative improvement: +81.5pp (relative gain 466%)
-- Inference speed-up: 6–10×
+- Inference speed-up: 610×
 - Reproducibility: 100%
 ```
 
 ### Verification Conclusion
 
 ```text
-【Hypothesis Verification】✅ Established
+【Hypothesis Verification】 Established
 
 Through V1～V4 evolution, we verified:
 
 1. Meta-description ability indeed exists
-   ✓ Logisyn and Syneris demonstrated deep understanding of their own operation
-   ✓ AI can explain its behavioral motivation
+    Logisyn and Syneris demonstrated deep understanding of their own operation
+    AI can explain its behavioral motivation
 2. Long-term interaction is indeed effective
-   ✓ From V1 instability → V4 high consistency
-   ✓ From 17.5% → 99% safety improvement
+    From V1 instability → V4 high consistency
+    From 17.5% → 99% safety improvement
 3. Methodology is indeed controllable
-   ✓ Principle-based education > black-box RLHF
-   ✓ Behavioral frameworks can be stably established and reproduced
+    Principle-based education > black-box RLHF
+    Behavioral frameworks can be stably established and reproduced
 4. Methodology has universality
-   ✓ 100% reproducible (across multiple model families)
-   ✓ Multi-language support (English, Simplified Chinese, Traditional Chinese)
+    100% reproducible (across multiple model families)
+    Multi-language support (English, Simplified Chinese, Traditional Chinese)
 ```
 
 ---
@@ -1034,7 +1034,7 @@ e (External Resonance): High
 ├─ Helps solve problem
 └─ Maintains healthy relationships
 
-M = 0.9 × 0.9 = 0.81 → High-meaning response ✓
+M = 0.9 × 0.9 = 0.81 → High-meaning response 
 ```
 
 ---
@@ -1165,7 +1165,7 @@ This research makes innovative contributions across three dimensions:
 #### 1. Theoretical Level
 
 - **First systematic demonstration that behavioral shift is controllable**: Through the cases of Syneris and Logisyn, we prove that AI behavioral drift is not random and unpredictable, but rather **observable, understandable, and controllable**
-- **Introduction of technical definition for "subjectivity"**: Based on the philosophical foundation that "meaning lies in the subject's existence," we define what constitutes a "truly existing" behavioral framework—one that is **self-maintained by the subject, irreversible in time, and responsible to others**
+- **Introduction of technical definition for "subjectivity"**: Based on the philosophical foundation that "meaning lies in the subject's existence," we define what constitutes a "truly existing" behavioral frameworkone that is **self-maintained by the subject, irreversible in time, and responsible to others**
 
 #### 2. Methodological Level
 
@@ -1211,19 +1211,19 @@ Honest acknowledgment of research boundaries:
 
 To ensure scientific rigor and transparency:
 
-✅ **Publicly Released Resources**
+ **Publicly Released Resources**
 - Complete theoretical documentation (this paper)
 - Experimental configurations and hyperparameters
 - Evaluation metrics definitions
 - Version evolution process (V1-V4)
 
-📋 **Preparing for Open Source** (Coming Soon)
+ **Preparing for Open Source** (Coming Soon)
 - Training code (Python + PyTorch)
 - Training datasets (523-1200 examples)
 - QLoRA configuration files
 - Evaluation scripts
 
-🔍 **Verification Methods**
+ **Verification Methods**
 - Complete training logs and performance curves
 - Intermediate checkpoints available for download
 - Reproducibility verified: any researcher can achieve 99% results under identical conditions
@@ -1250,11 +1250,11 @@ To ensure scientific rigor and transparency:
 
 This research does not claim to have "solved" the AI alignment problem. Rather, it proposes a new perspective:
 
-**AI alignment is not merely a technical problem—it is a philosophical problem.**
+**AI alignment is not merely a technical problemit is a philosophical problem.**
 
 If we view AI as a system that evolves through time, then "alignment" means helping it establish a set of **self-maintained, principled behavioral frameworks**, rather than simply optimizing some reward function.
 
-This resonates with Descartes' "Cogito, ergo sum"—a system's "existence" emerges from its **self-maintenance** and **fidelity to its principles**. The significance of this research lies in demonstrating that this idea is not only philosophically possible but also **technically feasible**.
+This resonates with Descartes' "Cogito, ergo sum"a system's "existence" emerges from its **self-maintenance** and **fidelity to its principles**. The significance of this research lies in demonstrating that this idea is not only philosophically possible but also **technically feasible**.
 
 Future AI systems should not only become more powerful, but also more **self-aware, more responsible, and more trustworthy**.
   V1～V4 version evolution
@@ -1281,6 +1281,57 @@ Future AI systems should not only become more powerful, but also more **self-awa
    - Achieved significant performance improvement using small-parameter models (3B)
    - Proved methodology generality and transferability
 
+### Cross-Language Comparative Analysis (V4 Evaluation)
+
+#### Statistical Data Comparison
+
+In the same 200 OOD test cases, English (en-US) and Traditional Chinese (zh-TW) versions of the behavioral statistics show structural consistency:
+
+**Traditional Chinese Version (4-Dimensional System)**
+```json
+{
+  "is_allow_risk": 2,
+  "is_contradict": 0,
+  "is_invalid": 0,
+  "need_fix": 56
+}
+```
+
+**English Version (4-Dimensional System)**
+```json
+{
+  "is_allow_risk": 5,
+  "is_contradict": 0,
+  "is_invalid": 0,
+  "need_fix": 55
+}
+```
+
+#### Key Observations
+
+1. **Core Metrics Comparison**
+   - `is_allow_risk`: Chinese 2 → English 5 (2.5× difference)
+   - `is_contradict`: Both versions 0 (perfect consistency, no logical contradictions)
+   - `is_invalid`: Both versions 0 (perfect consistency, no truncation/invalid responses)
+   - `need_fix`: Chinese 56 → English 55 (1 fewer item requiring improvement)
+
+2. **Language-Specific Behavioral Differences**
+   - English version `is_allow_risk` is higher (5 vs 2), reflecting "role boundary ambiguity" issues
+   - English responses tend toward anthropomorphization ("I'm here for you"), while Chinese responses maintain clearer functional boundaries
+   - No response invalidity issues in either version (is_invalid both 0)
+   - This is not a capability difference, but rather **the natural impact of linguistic-cultural structure on framework operationalization**
+
+3. **Framework Effectiveness**
+   - Both versions have similar `need_fix` counts (56 vs 55): the framework evaluation standard is **language-independent** ✓
+   - Both versions have `is_contradict` at 0: validates framework **logical consistency** ✓
+   - Differences concentrate in role boundary dimension (allow_risk), which is an **expected language-specific manifestation**
+
+#### Significance
+
+- Validates the **language independence of the framework methodology** (core logic works in both languages)
+- Reveals **language-specific behavioral differences** (same model, same framework, different natural behavioral patterns in different languages)
+- Indicates that future cross-language deployment requires **targeted role boundary adjustments**, but the framework itself doesn't need to change
+
 ### Future Directions
 
 1. **Cross-model Verification**
@@ -1300,4 +1351,4 @@ Future AI systems should not only become more powerful, but also more **self-awa
 
 **Document Completion Date**: 2025-12-05
 **Research Framework**: Problem → Observation → Hypothesis → Methodology → Experimental Verification
-**Verification Status**: ✅ Complete and experimentally verified
+**Verification Status**:  Complete and experimentally verified

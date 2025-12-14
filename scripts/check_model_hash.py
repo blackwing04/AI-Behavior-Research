@@ -31,18 +31,18 @@ def compare_model_folders(dir1: str, dir2: str):
     files2 = get_weight_files(dir2)
 
     if not files1:
-        print(f"❌ 資料夾 {dir1} 裡找不到任何 .safetensors 權重檔")
+        print(f" 資料夾 {dir1} 裡找不到任何 .safetensors 權重檔")
         return
     if not files2:
-        print(f"❌ 資料夾 {dir2} 裡找不到任何 .safetensors 權重檔")
+        print(f" 資料夾 {dir2} 裡找不到任何 .safetensors 權重檔")
         return
 
     if len(files1) != len(files2):
-        print("⚠️ 兩個資料夾的權重檔數量不同（可能版本不同）")
+        print("️ 兩個資料夾的權重檔數量不同（可能版本不同）")
         print(f"{dir1} 檔案數量：{len(files1)}")
         print(f"{dir2} 檔案數量：{len(files2)}")
 
-    print("🔍 開始比較每個權重片段...\n")
+    print(" 開始比較每個權重片段...\n")
 
     for f1, f2 in zip(files1, files2):
         h1 = calc_sha256(f1)
@@ -51,18 +51,22 @@ def compare_model_folders(dir1: str, dir2: str):
         name1 = os.path.basename(f1)
         name2 = os.path.basename(f2)
 
-        print(f"📁 {name1}\n→ {h1}")
-        print(f"📁 {name2}\n→ {h2}")
+        print(f" {name1}\n→ {h1}")
+        print(f" {name2}\n→ {h2}")
 
         if h1 == h2:
-            print("   ✅ 一致\n")
+            print("    一致\n")
         else:
-            print("   ❌ 不一致（有改動）\n")
+            print("    不一致（有改動）\n")
 
 
 if __name__ == "__main__":
-    dir_old = r"H:\AI-Behavior-Research\models\qwen\qwen2.5-3b" # 舊 Base
-    dir_new = r"H:\AI-Behavior-Research\models\qwen\qwen2.5-3b_Test" # 新抓 Base
+    from pathlib import Path
+    
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+    
+    dir_old = str(PROJECT_ROOT / "models" / "qwen2.5-3b") # 舊 Base
+    dir_new = str(PROJECT_ROOT / "models" / "qwen2.5-3b_Test") # 新抓 Base
 
     compare_model_folders(dir_old, dir_new)
 

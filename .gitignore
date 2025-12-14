@@ -15,3 +15,5 @@
 /.vscode/MARKDOWN_PREVIEW_SETUP.md
 /.vscode/keybindings.json
 /.vscode/settings.json
+/scripts/translate_behavior_gpt4.py
+/scripts/__pycache__

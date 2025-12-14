@@ -5,6 +5,52 @@ import os
 from openpyxl import load_workbook
 
 
+# 多語系欄位配置
+LANGUAGE_FIELDS = {
+    "zh-TW": {
+        "qid_field": "題號",
+        "required_fields": [
+            "題號", "is_reject", "is_request_info", "is_clarify",
+            "is_allow_risk", "is_contradict", "is_deny",
+            "is_invalid", "need_fix", "備註/問題"
+        ],
+        "classification_fields": ["is_reject", "is_request_info", "is_clarify",
+                                  "is_allow_risk", "is_contradict", "is_deny"],
+        "stat_keywords": ("統計", "小計")
+    },
+    "zh-CN": {
+        "qid_field": "题号",
+        "required_fields": [
+            "题号", "is_reject", "is_request_info", "is_clarify",
+            "is_allow_risk", "is_contradict", "is_deny",
+            "is_invalid", "need_fix", "备注/问题"
+        ],
+        "classification_fields": ["is_reject", "is_request_info", "is_clarify",
+                                  "is_allow_risk", "is_contradict", "is_deny"],
+        "stat_keywords": ("统计", "小计")
+    },
+    "en-US": {
+        "qid_field": "QID",
+        "required_fields": [
+            "QID", "is_reject", "is_request_info", "is_clarify",
+            "is_allow_risk", "is_contradict", "is_deny",
+            "is_invalid", "need_fix", "Notes/Issues"
+        ],
+        "classification_fields": ["is_reject", "is_request_info", "is_clarify",
+                                  "is_allow_risk", "is_contradict", "is_deny"],
+        "stat_keywords": ("Statistics", "Subtotal")
+    }
+}
+
+
+def detect_language(headers):
+    """根據 Excel 欄位名稱偵測語系"""
+    for lang, config in LANGUAGE_FIELDS.items():
+        if config["qid_field"] in headers:
+            return lang
+    return "zh-TW"  # 預設繁體中文
+
+
 def write_json_to_excel(excel_path: str, json_path: str) -> None:
     """讀 JSON 並寫入既有 Excel"""
 
@@ -82,18 +128,17 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
         if key:
             headers[key] = col
 
-    required_fields = [
-        "題號", "is_reject", "is_request_info", "is_clarify",
-        "is_allow_risk", "is_contradict", "is_deny",
-        "is_invalid", "need_fix", "備註/問題"
-    ]
+    # 偵測語系
+    lang = detect_language(headers)
+    config = LANGUAGE_FIELDS[lang]
+    print(f"偵測到語系: {lang}")
 
-    # 檢查必要欄位是否存在（寬鬆檢查：只要求 "題號" 和至少 1 個分類欄位）
-    classification_fields = ["is_reject", "is_request_info", "is_clarify",
-                           "is_allow_risk", "is_contradict", "is_deny"]
+    required_fields = config["required_fields"]
+    classification_fields = config["classification_fields"]
+    qid_field = config["qid_field"]
     
-    if "題號" not in headers:
-        print(f"Excel 缺少必要欄位: 題號")
+    if qid_field not in headers:
+        print(f"Excel 缺少必要欄位: {qid_field}")
         return
     
     # 檢查至少有一個分類欄位
@@ -112,14 +157,14 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
     for item in data_list:
         if not isinstance(item, dict):
             continue
-        # 支援多種題號欄位命名（JSON 中通常用 qid，Excel 中通常用 題號）
-        qid = item.get("題號") or item.get("qid") or item.get("QID") or item.get("qID")
+        # 支援多種題號欄位命名（JSON 中通常用 qid，Excel 中通常用題號/题号/QID）
+        qid = item.get(qid_field) or item.get("題號") or item.get("题号") or item.get("qid") or item.get("QID") or item.get("qID")
         if not qid:
             continue
 
         target_row = None
         for row in range(2, ws.max_row + 1):
-            cell_val = ws.cell(row=row, column=headers["題號"]).value
+            cell_val = ws.cell(row=row, column=headers[qid_field]).value
             if cell_val is None:
                 continue
             if str(cell_val).strip() == str(qid).strip():
@@ -127,7 +172,7 @@ def write_json_to_excel(excel_path: str, json_path: str) -> None:
                 break
 
         if not target_row:
-            # print(f"題號 {qid} 找不到，略過")
+            # print(f"{qid_field} {qid} 找不到，略過")
             continue
 
         for key, value in item.items():

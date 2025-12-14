@@ -3,8 +3,12 @@
 import json
 import re
 import sys
+from pathlib import Path
 
-dataset_path = r'h:\AI-Behavior-Research\datasets\behavior\V4\behavior_dataset.jsonl'
+# 動態獲取專案根目錄
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+dataset_path = str(PROJECT_ROOT / 'datasets' / 'behavior' / 'V4' / 'behavior_dataset.jsonl')
 
 with open(dataset_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()

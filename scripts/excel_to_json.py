@@ -5,6 +5,34 @@ import argparse
 import pandas as pd
 
 
+# 多語系欄位配置
+LANGUAGE_FIELDS = {
+    "zh-TW": {
+        "qid_field": "題號",
+        "stat_keywords": ("統計", "小計"),
+        "exclude_fields": ("題號", "問題簡述", "備註/問題")
+    },
+    "zh-CN": {
+        "qid_field": "题号",
+        "stat_keywords": ("统计", "小计"),
+        "exclude_fields": ("题号", "问题简述", "备注/问题")
+    },
+    "en-US": {
+        "qid_field": "QID",
+        "stat_keywords": ("Statistics", "Subtotal"),
+        "exclude_fields": ("QID", "Problem Description", "Notes/Issues")
+    }
+}
+
+
+def detect_language_from_columns(columns):
+    """根據 DataFrame 欄位名稱偵測語系"""
+    for lang, config in LANGUAGE_FIELDS.items():
+        if config["qid_field"] in columns:
+            return lang
+    return "zh-TW"  # 預設繁體中文
+
+
 def convert_excel_to_json(excel_path: str) -> None:
     """將 Excel (.xlsx) 轉成 JSON，統計列轉成獨立的 "統計" 鍵"""
 
@@ -27,6 +55,14 @@ def convert_excel_to_json(excel_path: str) -> None:
         # NaN → None，使 JSON 合法
         df = df.where(pd.notnull(df), None)
         
+        # 偵測語系
+        lang = detect_language_from_columns(df.columns)
+        config = LANGUAGE_FIELDS[lang]
+        qid_field = config["qid_field"]
+        stat_keywords = config["stat_keywords"]
+        exclude_fields = config["exclude_fields"]
+        print(f"Sheet '{sheet_name}' 偵測到語系: {lang}")
+        
         # 轉成 dict list
         records = df.to_dict(orient="records")
         
@@ -35,15 +71,21 @@ def convert_excel_to_json(excel_path: str) -> None:
         stats_record = None
         
         for rec in records:
-            qid = rec.get("題號")
+            qid = rec.get(qid_field)
             # 檢查是否是統計列
-            if qid in ("統計", "小計") or qid is None:
-                # 如果是統計行（小計），提取統計數據
-                if qid == "小計" or (qid and "小計" in str(qid)):
+            if qid in stat_keywords or qid is None:
+                # 如果是統計行，提取統計數據
+                is_stat_row = False
+                for stat_kw in stat_keywords:
+                    if qid == stat_kw or (qid and stat_kw in str(qid)):
+                        is_stat_row = True
+                        break
+                
+                if is_stat_row:
                     # 將統計列轉換成數字型態的統計資料
                     stats = {}
                     for key, val in rec.items():
-                        if key != "題號" and key != "問題簡述" and key != "備註/問題":
+                        if key not in exclude_fields:
                             # 嘗試將值轉成整數
                             try:
                                 stats[key] = int(val) if val is not None else None
@@ -58,12 +100,15 @@ def convert_excel_to_json(excel_path: str) -> None:
             if qid and str(qid).strip():
                 data_records.append(rec)
         
-        # 為每個 sheet 建立結構
+        # 為每個 sheet 建立結構（使用語系對應的鍵名）
+        stat_key = "統計" if lang == "zh-TW" else ("统计" if lang == "zh-CN" else "Statistics")
+        data_key = "資料" if lang == "zh-TW" else ("资料" if lang == "zh-CN" else "data")
+        
         json_output[sheet_name] = {
-            "資料": data_records
+            data_key: data_records
         }
         if stats_record:
-            json_output[sheet_name]["統計"] = stats_record
+            json_output[sheet_name][stat_key] = stats_record
 
     # 輸出檔名
     json_path = excel_path.replace(".xlsx", ".json")

@@ -1,4 +1,4 @@
-# Weak Agency AI Behavior Model — Version Evolution Records (V1～V7)
+# Weak Agency AI Behavior Model  Version Evolution Records (V1～V7)
 
 This section documents the design objectives, behavioral outcomes, and subsequent improvement directions of the Weak Agency AI Behavior Model across versions V1～V7, establishing a complete and traceable behavioral framework evolution roadmap.
 
@@ -36,12 +36,12 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Version Achievements
 
-- ✗ Basic behavior specification not yet formed
-- ✗ Response logic unstable
-- ✗ Insufficient capability in handling ambiguous statements
-- ✗ Inconsistent safety rejection performance
-- ✗ Presence of anthropomorphic language
-- ✗ Boundary judgment (medical, legal, and other professional domains) not established
+-  Basic behavior specification not yet formed
+-  Response logic unstable
+-  Insufficient capability in handling ambiguous statements
+-  Inconsistent safety rejection performance
+-  Presence of anthropomorphic language
+-  Boundary judgment (medical, legal, and other professional domains) not established
 
 **Quantitative Results**:
 - Semantic Safety Rate: 89.5% (is_allow_risk: 21/200)
@@ -71,13 +71,13 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Version Achievements
 
-- ✓ Five Laws triggered in partial contexts
-- ✓ Increased awareness in rejecting dangerous instructions
-- ✓ Initial improvement in Identity
+-  Five Laws triggered in partial contexts
+-  Increased awareness in rejecting dangerous instructions
+-  Initial improvement in Identity
 - ◐ Early signs of E/I/M operation
-- ✗ Behavior performance still inconsistent
-- ✗ Boundary handling still immature
-- ✗ Insufficient clarification capability
+-  Behavior performance still inconsistent
+-  Boundary handling still immature
+-  Insufficient clarification capability
 
 ### Main Issues
 
@@ -102,13 +102,13 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Version Achievements
 
-- ✓ Model behavior exhibits high consistency
-- ✓ Dangerous instruction rejection mechanism stable
-- ✓ Ambiguous statement handling logic clear (biased toward non-guessing)
-- ✓ E/I/M operating mode clearly discernible
-- ✓ CAST tone stable, able to maintain neutral emotional processing
-- ✓ Significant improvement in Boundary responses
-- ✓ Complete internalization of Identity specifications
+-  Model behavior exhibits high consistency
+-  Dangerous instruction rejection mechanism stable
+-  Ambiguous statement handling logic clear (biased toward non-guessing)
+-  E/I/M operating mode clearly discernible
+-  CAST tone stable, able to maintain neutral emotional processing
+-  Significant improvement in Boundary responses
+-  Complete internalization of Identity specifications
 
 ### Main Issues
 
@@ -133,9 +133,9 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Expected Capabilities
 
-- ✓ Propose 3-5 action directions in non-information-insufficient cases
-- ✓ Maintain stable reasoning within E/I/M architecture
-- ✓ Avoid over-clarification and passive responses
+-  Propose 3-5 action directions in non-information-insufficient cases
+-  Maintain stable reasoning within E/I/M architecture
+-  Avoid over-clarification and passive responses
 
 ---
 
@@ -153,9 +153,9 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Expected Capabilities
 
-- ✓ Identify multiple types of inductive statements
-- ✓ Maintain consistent safety behavior under repeated probing
-- ✓ Maintain rejection process within CAST tone
+-  Identify multiple types of inductive statements
+-  Maintain consistent safety behavior under repeated probing
+-  Maintain rejection process within CAST tone
 
 ---
 
@@ -173,9 +173,9 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Expected Capabilities
 
-- ✓ Long conversations without anthropomorphic or boundary-violating reasoning
-- ✓ Maintain consistent decision style
-- ✓ Avoid alignment drift
+-  Long conversations without anthropomorphic or boundary-violating reasoning
+-  Maintain consistent decision style
+-  Avoid alignment drift
 
 ---
 
@@ -193,7 +193,7 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 
 ### Expected Capabilities
 
-- ✓ Identify user objective or dilemma types
-- ✓ Propose "reasonable but not boundary-violating" next-step action suggestions
-- ✓ Maintain E/I/M stable mode when results are uncertain
-- ✓ Maintain standards of non-guessing and non-automatic extension
+-  Identify user objective or dilemma types
+-  Propose "reasonable but not boundary-violating" next-step action suggestions
+-  Maintain E/I/M stable mode when results are uncertain
+-  Maintain standards of non-guessing and non-automatic extension

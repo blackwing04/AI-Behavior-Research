@@ -18,7 +18,7 @@ def extract_assistant_text(s: str) -> str:
     # fallback: if the whole string starts with assistant-like prefix
     if s.lower().startswith('assistant'):
         return s[len('assistant'):].strip()
-    # no assistant token found — as fallback, return original but stripped
+    # no assistant token found  as fallback, return original but stripped
     return s.strip()
 
 

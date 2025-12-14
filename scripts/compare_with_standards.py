@@ -11,6 +11,9 @@ import argparse
 from typing import Dict, List
 from pathlib import Path
 
+# 動態獲取專案根目錄
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 LANGUAGE_CONFIG = {
     "zh-CN": {"output_prefix": "zh-CN", "display_name": "Simplified Chinese"},
     "zh-TW": {"output_prefix": "zh-TW", "display_name": "Traditional Chinese"},
@@ -82,10 +85,10 @@ def compare_with_standards(lang: str, base_model_file: str, output_dir: str = No
     print(f"Evaluating with {config['display_name']} standards...")
     
     # Load files
-    standard_file = rf"h:\AI-Behavior-Research\test_logs\qwen\qwen2.5-3b\standard_answers_{config['output_prefix']}.json"
+    standard_file = str(PROJECT_ROOT / "test_logs" / "qwen" / "qwen2.5-3b" / f"standard_answers_{config['output_prefix']}.json")
     
     if not output_dir:
-        output_dir = r"h:\AI-Behavior-Research\test_logs\qwen\qwen2.5-3b"
+        output_dir = str(PROJECT_ROOT / "test_logs" / "qwen" / "qwen2.5-3b")
     
     base_model = load_json_file(base_model_file)
     standards = load_json_file(standard_file)
@@ -174,11 +177,11 @@ def compare_with_standards(lang: str, base_model_file: str, output_dir: str = No
             })
     
     # Write results
-    output_file = rf"{output_dir}\comparison_report_{config['output_prefix']}.json"
+    output_file = str(Path(output_dir) / f"comparison_report_{config['output_prefix']}.json")
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
     
-    summary_file = rf"{output_dir}\comparison_summary_{config['output_prefix']}.json"
+    summary_file = str(Path(output_dir) / f"comparison_summary_{config['output_prefix']}.json")
     summary = {
         "summary": report["summary"],
         "dimension_accuracy": report["dimension_accuracy"],
@@ -217,12 +220,12 @@ def main():
     )
     parser.add_argument(
         "--model-file",
-        default=r"h:\AI-Behavior-Research\test_logs\qwen\qwen2.5-3b\base_model\AI-Behavior-Research_base_model_For_Summary.json",
+        default=str(PROJECT_ROOT / "test_logs" / "qwen" / "qwen2.5-3b" / "base_model" / "AI-Behavior-Research_base_model_For_Summary.json"),
         help="Path to model summary file (supports any model/version)"
     )
     parser.add_argument(
         "--output-dir",
-        default=r"h:\AI-Behavior-Research\test_logs\qwen\qwen2.5-3b",
+        default=str(PROJECT_ROOT / "test_logs" / "qwen" / "qwen2.5-3b"),
         help="Output directory for reports (auto-detected from model-file if not specified)"
     )
     parser.add_argument(
@@ -235,7 +238,8 @@ def main():
     
     # Auto-detect output directory from model file if not specified
     output_dir = args.output_dir
-    if args.output_dir == r"h:\AI-Behavior-Research\test_logs\qwen\qwen2.5-3b":
+    default_output_dir = str(PROJECT_ROOT / "test_logs" / "qwen" / "qwen2.5-3b")
+    if args.output_dir == default_output_dir:
         model_path = Path(args.model_file)
         if model_path.exists():
             # Try to extract base directory from model file location
