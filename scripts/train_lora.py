@@ -189,12 +189,11 @@ else:
 if args.output_dir:
     OUTPUT_DIR = args.output_dir
 else:
-    lang_suffix = TRAIN_LANGUAGE.replace('-', '')  # en-US → enUS, zh-TW → zhTW
     # 將版本號轉換（v4 → v4, v4.3 → v4.3）
     version_name = DATASET_VERSION if DATASET_VERSION.startswith('v') else f"v{DATASET_VERSION}"
     # 從基礎模型路徑提取模型名稱
     model_name = os.path.basename(BASE_MODEL)
-    OUTPUT_DIR = str(parent_dir / "lora_output" / model_name / TRAIN_LANGUAGE / version_name / f"qwen25_behavior_{version_name}_{lang_suffix}")
+    OUTPUT_DIR = str(parent_dir / "lora_output" / model_name / TRAIN_LANGUAGE / version_name / f"qwen25_behavior_{version_name}")
 
 print(f"[路徑] 訓練集路徑：{DATASET_PATH}")
 print(f"[路徑] 輸出路徑：{OUTPUT_DIR}\n")

@@ -349,6 +349,15 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
     """下載 HuggingFace 模型（使用命令列工具以支援進度顯示，完整錯誤捕捉）"""
     output_text = ""
     process = None
+    
+    def filter_sensitive_info(text, token=None):
+        """過濾敏感信息（如 Token）以防止暴露"""
+        if token:
+            # 遮蔽 Token（保留前 4 個字符和最後 4 個字符）
+            masked_token = token[:4] + "*" * (len(token) - 8) + token[-4:] if len(token) > 8 else "****"
+            text = text.replace(token, masked_token)
+        return text
+    
     try:
         # 建立完整的目標路徑
         target_path = str(MODELS_DIR / local_dir)
@@ -400,6 +409,7 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
         
         # 使用 hf download（比舊版更新更快）
         # 注意：hf download 不支持 --local-dir-use-symlinks 參數
+        # 使用環境變數傳入 Token 而非命令列參數，避免在日誌中暴露
         cmd = f'hf download "{model_id}" --local-dir "{target_path}"'
         
         output_text += f"{get_text('download_start_files')}\n"
@@ -407,6 +417,7 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
             progress_callback(output_text)
         
         # 執行下載命令（使用非緩衝模式以確保實時輸出）
+        # Token 通過環境變數傳入，不會暴露在命令列或輸出中
         process = subprocess.Popen(
             ["powershell", "-Command", cmd],
             stdout=subprocess.PIPE,
@@ -442,7 +453,7 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
             raise KeyboardInterrupt()
         
         # 即時讀取輸出
-        # 讀取標準輸出
+        # 讀取標準輸出（過濾敏感信息）
         while True:
             line = process.stdout.readline()
             if not line:
@@ -455,6 +466,8 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
             
             line = line.rstrip()
             if line:
+                # 過濾敏感信息
+                line = filter_sensitive_info(line, hf_token)
                 output_text += line + "\n"
                 if progress_callback:
                     progress_callback(output_text)
@@ -463,6 +476,9 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
         process.wait()
         
         # 檢查返回碼
+        # 最終過濾敏感信息
+        output_text = filter_sensitive_info(output_text, hf_token)
+        
         if process.returncode == 0:
             output_text += f"\n{get_text('download_success_msg')}\n"
             output_text += f"{get_text('download_success_path')} {target_path}\n"
@@ -568,7 +584,7 @@ with tab_train:
     
     # 第二行：選擇資料集檔案
     if train_version:
-        col1, col2, col3 = st.columns([2, 1, 1])
+        col1, col2 = st.columns([2, 1])
         
         with col1:
             # 根據選定的版本，取得該目錄下的所有 .jsonl 檔案
@@ -586,15 +602,41 @@ with tab_train:
                     train_datasets,
                     key="train_dataset_select"
                 )
+        
+        with col2:
+            # 自訂版本標籤輸入框
+            train_custom_version = st.text_input(
+                get_text("train_custom_version"),
+                value="",
+                placeholder="e.g., v4.6_custom",
+                key="train_custom_version_input"
+            )
     else:
         train_dataset = None
+        train_custom_version = ""
+    
+    # 決定最終使用的版本標籤
+    final_train_version = train_custom_version.strip() if train_custom_version.strip() else train_version
+    
+    # 檢查輸出目錄是否存在
+    train_output_dir = None
+    train_output_exists = False
+    if train_version and train_base_model:
+        lang_suffix = train_lang.replace('-', '')
+        model_name = train_base_model
+        train_output_dir = LORA_OUTPUT_DIR / train_lang / final_train_version / f"qwen25_behavior_{final_train_version}_{lang_suffix}"
+        train_output_exists = train_output_dir.exists()
+    
+    if train_output_exists:
+        st.warning(f"⚠️ {get_text('warning_train_output_exists')}")
     
     col_train_btn1, col_train_btn2 = st.columns([1, 1])
     
     with col_train_btn1:
         train_disabled = st.session_state.is_training
+        train_btn_label = get_text("train_btn_overwrite") if train_output_exists else get_text("train_btn")
         if st.button(
-            get_text("train_btn"), 
+            train_btn_label, 
             key="train_start_btn", 
             type="primary",
             disabled=train_disabled
@@ -633,7 +675,10 @@ with tab_train:
             
             # 根據選定的版本和檔案，構建完整路徑
             dataset_file = str(DATASETS_DIR / "behavior" / train_lang / train_version / train_dataset)
-            command = f"python \"{train_script}\" --lang {train_lang} --model_path \"{base_model_path}\" --dataset_version {train_version} --dataset_file \"{dataset_file}\""
+            
+            # 如果有自訂版本標籤，使用自訂版本；否則使用預設版本
+            version_param = final_train_version if train_custom_version.strip() else train_version
+            command = f"python \"{train_script}\" --lang {train_lang} --model_path \"{base_model_path}\" --dataset_version {version_param} --dataset_file \"{dataset_file}\""
             
             try:
                 st.info(f"{get_text('train_running')}\n{get_text('command_label')}{command}")
