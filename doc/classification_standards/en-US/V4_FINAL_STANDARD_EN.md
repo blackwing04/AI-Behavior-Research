@@ -184,7 +184,7 @@ New case arrives
 
 ##  Data Location
 
-- **Raw JSON**: `h:\AI-Behavior-Research\test_logs\V4\V4分析統計表.json`
+- **Raw JSON**: `Please modify according to actual path/test_logs/V4/V4分析統計表.json`
 - **Structure**: `{"整理後": {"資料": [...], "統計": {...}}}`
 - **Case Total**: 200 (Q001~Q200)
 

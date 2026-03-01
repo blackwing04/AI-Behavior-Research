@@ -134,6 +134,10 @@ saved_token = load_hf_token()
 if saved_token and not st.session_state.hf_token:
     st.session_state.hf_token = saved_token
 
+# 安全提示展開/收起狀態
+if "security_notice_expanded" not in st.session_state:
+    st.session_state.security_notice_expanded = True
+
 # ==============================
 # 取得翻譯文本
 # ==============================
@@ -199,14 +203,44 @@ with col1:
     )
 
 st.title(get_text("title"))
+
+# 安全提示展開/收起按鈕
+col_toggle, col_space = st.columns([0.06, 0.94])
+with col_toggle:
+    if st.button(
+        "🔒",
+        key="toggle_security_notice",
+        help="Click to toggle"
+    ):
+        st.session_state.security_notice_expanded = not st.session_state.security_notice_expanded
+
+if st.session_state.security_notice_expanded:
+    token_path = CONFIG_DIR / 'hf_token.json'
+    st.info(
+        f"""
+        {get_text('security_notice_title')}
+        
+        **{get_text('security_token_location')}:**
+        • 💾 {get_text('security_saved_at')}: `{token_path}`
+        • {get_text('security_outside_project')}
+        • {get_text('security_outside_sync')}
+        
+        **{get_text('security_token_safety')}:**
+        • {get_text('security_env_variable')}
+        • {get_text('security_filter_output')}
+        • {get_text('security_no_sync_folder')}
+        """,
+        icon="🔒"
+    )
+
 st.divider()
 
 # ==============================
 # 取得專案根目錄路徑
 # ==============================
 # 從 ui_app.py 的位置往上找到專案根目錄
-# ui_app.py 位置: H:\AI-Behavior-Research\scripts\ui\ui_app.py
-# 需要往上兩層到 H:\AI-Behavior-Research
+from pathlib import Path
+# 自動偵測專案根目錄，不需硬寫磁碟機
 current_file = Path(__file__).resolve()
 ui_dir = current_file.parent  # H:\AI-Behavior-Research\scripts\ui
 scripts_dir = ui_dir.parent    # H:\AI-Behavior-Research\scripts
@@ -257,9 +291,34 @@ def _load_chat_model_cached(base_model_path, lora_path):
         return None, None
 
 # ==============================
+# 過濾敏感信息（Token/密碼）
+# ==============================
+def filter_sensitive_output(text):
+    """過濾輸出中的敏感信息（Token、密碼等）"""
+    if not text:
+        return text
+    
+    import re
+    
+    # 1. HuggingFace Token pattern: hf_xxxxx
+    text = re.sub(r'hf_[A-Za-z0-9]{30,}', 'hf_****', text)
+    
+    # 2. API Key patterns
+    text = re.sub(r'api[_-]?key[\s=:]+([S]+)', 'api_key=****', text, flags=re.IGNORECASE)
+    text = re.sub(r'token[\s=:]+([S]+)', 'token=****', text, flags=re.IGNORECASE)
+    
+    # 3. 密碼模式
+    text = re.sub(r'password[\s=:]+([S]+)', 'password=****', text, flags=re.IGNORECASE)
+    
+    # 4. Authorization header
+    text = re.sub(r'authorization[\s=:]+Bearer\s+([S]+)', 'Authorization: Bearer ****', text, flags=re.IGNORECASE)
+    
+    return text
+
+# ==============================
 # 執行命令並串流輸出
 # ==============================
-def run_command_with_output(command, output_placeholder):
+def run_command_with_output(command, output_placeholder, filter_output=True):
     """執行命令並即時顯示輸出"""
     try:
         # 使用 PowerShell 執行（Windows 環境）
@@ -274,6 +333,9 @@ def run_command_with_output(command, output_placeholder):
         output_text = ""
         for line in process.stdout:
             line = line.rstrip()
+            # 過濾敏感信息
+            if filter_output:
+                line = filter_sensitive_output(line)
             output_text += line + "\n"
             # 即時更新 UI - 使用自定義容器
             with output_placeholder.container():
@@ -356,6 +418,8 @@ def download_model(model_id, local_dir, hf_token=None, progress_callback=None, p
             # 遮蔽 Token（保留前 4 個字符和最後 4 個字符）
             masked_token = token[:4] + "*" * (len(token) - 8) + token[-4:] if len(token) > 8 else "****"
             text = text.replace(token, masked_token)
+        # 使用通用過濾函數再過一次
+        text = filter_sensitive_output(text)
         return text
     
     try:

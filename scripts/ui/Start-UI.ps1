@@ -14,8 +14,8 @@ Write-Host "AI Behavior Research UI - Start Tool" -ForegroundColor Cyan
 Write-Host "========================================`n" -ForegroundColor Cyan
 
 # Get project root directory
-# $MyInvocation.MyCommand.Path = H:\AI-Behavior-Research\scripts\ui\Start-UI.ps1
-# Split-Path -Parent twice gets to H:\AI-Behavior-Research
+# $MyInvocation.MyCommand.Path 可自動取得目前腳本路徑
+# Split-Path -Parent 可往上取得專案根目錄
 $scriptDir = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path))
 
 # Find conda automatically

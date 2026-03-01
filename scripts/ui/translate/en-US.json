@@ -129,5 +129,14 @@
   "lora_model_label": "LoRA Model",
   "command_label": "Command:",
   "download_hf_token_placeholder": "Paste your HuggingFace Token...",
-  "convert_select_direction": "Select Conversion Direction"
+  "convert_select_direction": "Select Conversion Direction",
+  "security_notice_title": "🔐 Security Notice",
+  "security_token_location": "Token Storage Location",
+  "security_saved_at": "Saved at",
+  "security_outside_project": "✅ Outside project folder (won't be uploaded by accident)",
+  "security_outside_sync": "✅ Outside sync folders (OneDrive/Google Drive/Dropbox)",
+  "security_token_safety": "Token Safety",
+  "security_env_variable": "✅ Token is passed via environment variable (not in command line)",
+  "security_filter_output": "✅ All console output filters sensitive information automatically",
+  "security_no_sync_folder": "✅ Do NOT save token in synced folders or project root"
 }

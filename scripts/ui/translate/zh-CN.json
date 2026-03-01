@@ -129,5 +129,14 @@
   "lora_model_label": "LoRA 模型",
   "command_label": "命令：",
   "download_hf_token_placeholder": "粘贴你的 HuggingFace Token...",
-  "convert_select_direction": "選擇轉換方向"
+  "convert_select_direction": "选择转换方向",
+  "security_notice_title": "🔐 安全提示",
+  "security_token_location": "Token 存储位置",
+  "security_saved_at": "保存位置",
+  "security_outside_project": "✅ 在项目资料夹外（不会被意外上传）",
+  "security_outside_sync": "✅ 不在同步资料夹（OneDrive/Google Drive/Dropbox）",
+  "security_token_safety": "Token 安全性",
+  "security_env_variable": "✅ Token 通过环境变量传递（不在命令行暴露）",
+  "security_filter_output": "✅ 所有 Console 输出自动过滤敏感信息",
+  "security_no_sync_folder": "✅ 勿在同步资料夹或项目根目录保存 Token"
 }
