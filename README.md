@@ -433,4 +433,9 @@ This research builds on open-source models and frameworks:
 
 ---
 
+## Status
+v1.1 published (Dec 2025): LoRA-based framework alignment.
+Currently working on v2.0: pure-vector path (no training required).
+Expected: Q2~Q3 2026.
+
 **Note**: This is active research. Results and methodologies may be updated as the project progresses. See version history in `doc/Version/` for detailed change logs.
