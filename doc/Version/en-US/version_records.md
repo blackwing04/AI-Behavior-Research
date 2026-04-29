@@ -197,3 +197,21 @@ This section documents the design objectives, behavioral outcomes, and subsequen
 -  Propose "reasonable but not boundary-violating" next-step action suggestions
 -  Maintain E/I/M stable mode when results are uncertain
 -  Maintain standards of non-guessing and non-automatic extension
+
+---
+
+### Research Conclusion (Added 2026-04)
+
+The LoRA-based behavioral framework research concluded at **V4**.
+
+V5 (Adversarial Safety), V6 (State Persistence), and V7 (Weak Agency) were originally planned as the next iterative refinements. However, after V4 completion and 200-case OOD validation, two unresolved questions surfaced:
+
+1. **Methodological boundary**: Each iteration relied on AI-suggested corrections. The line between "framework guiding the AI" and "AI guiding the framework" became unclear.
+2. **Explanatory limit**: The improvement was reproducible (100% replication, <0.5% variance), but the source of improvement could not be isolated. Three explanations remained unprovable: framework design alone, LoRA parameter updates alone, or their combined effect.
+
+These questions could not be resolved within available resources, and likely cannot be answered at this layer of investigation.
+
+**Decision**: V5~V7 will not proceed. The LoRA line closes at V4, with **v1.2 (automated evaluation toolkit)** as the final deliverable for LoRA researchers facing the same human-review bottleneck.
+
+For background on this decision, see the public series at:  
+https://vocus.cc/article/69cf2f82fd8978000158238b
